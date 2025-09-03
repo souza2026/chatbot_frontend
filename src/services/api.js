@@ -1,17 +1,23 @@
 import axios from "axios";
 
-const API_BASE = "http://localhost:5000"; // Flask backend URL
+const API_URL = "http://127.0.0.1:5001/api/chatbot/ask-gemini";
 
 export const sendMessage = async (message) => {
   try {
-    const response = await axios.post(`${API_BASE}/chat`, { query: message });
+    const response = await axios.post(
+      API_URL,
+      { message },
+      { headers: { "Content-Type": "application/json" } }
+    );
     return response.data;
   } catch (error) {
     console.error("Error communicating with backend:", error);
-    return { reply: "Server error. Try again later." };
+    
+    return { status: "error", message: "Server error. Try again later.", sql: null };
   }
 };
 
-export const downloadFile = async (format) => {
-  window.location.href = `${API_BASE}/download?format=${format}`;
+// Kept for compatibility if used elsewhere; adjust/remove if not needed
+export const downloadFile = async (_format) => {
+  console.warn("downloadFile is not supported for the ask-gemini endpoint.");
 };

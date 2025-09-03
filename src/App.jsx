@@ -14,14 +14,16 @@
 // export default App;
 
 
+// src/App.jsx
 import React from "react";
-import Chat from "./chat";  // Import Chat.js
-import "./index.css";       // Import global styles
+import ChatWindow from "./components/ChatWindow";
+// import "./index.css"; // Ensure this is imported
+
 
 function App() {
   return (
     <div className="app-container">
-      <Chat />
+      <ChatWindow />
     </div>
   );
 }
